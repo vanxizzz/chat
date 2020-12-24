@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 2277586 */
+            src: url('//at.alicdn.com/t/font_2277586_i03gtxkaxue.eot');
+            src: url('//at.alicdn.com/t/font_2277586_i03gtxkaxue.eot?#iefix') format('embedded-opentype'),
+                url('//at.alicdn.com/t/font_2277586_i03gtxkaxue.woff2') format('woff2'),
+                url('//at.alicdn.com/t/font_2277586_i03gtxkaxue.woff') format('woff'),
+                url('//at.alicdn.com/t/font_2277586_i03gtxkaxue.ttf') format('truetype'),
+                url('//at.alicdn.com/t/font_2277586_i03gtxkaxue.svg#iconfont') format('svg');
+        }
+
+        .iconfont {
+            font-family: "iconfont";
+        }
+
+        .iconfont.bottomArrowIcon::after {
+            content: "\e6c4";
+        }
+
+        .iconfont.accountIcon::after {
+            content: "\e609";
+        }
+
+        .iconfont.passwordIcon::after {
+            content: "\e605";
+        }
+
+        .iconfont.nameIcon::after {
+            content: "\e62e";
+        }
+
+        .iconfont.rightArrowIcon::after {
+            content: "\e675";
+        }
+
+        .iconfont.leftArrowIcon::after {
+            content: "\e676";
+        }
+
+        .iconfont.searchIcon::after {
+            content: "\e600";
+        }
+
+        .iconfont.configIcon::after {
+            content: "\e611";
+        }
+
+        .iconfont.wechatIcon::after {
+            content: "\e6c3";
+        }
+    </style>
+</head>
+
+<body>
+    <button id="tt">测试</button>
+    <span class="iconfont">测试\e6c3</span>
+    <script>
+        window.addEventListener("unload", () => {
+            // alert("dddd")
+            console.log("测试")
+        })
+        tt.addEventListener("click", e => {
+            try {
+                function a(params) {
+                    b()
+                }
+                function b(params) {
+                    c()
+                }
+                function c(params) {
+                    // setTimeout(() => {
+                    //     abc;
+                    // }, 3000);
+                    abc;
+                }
+                a()
+            } catch (error) {
+                console.log(error)
+            }
+        })
+    </script>
+</body>
+
+</html>

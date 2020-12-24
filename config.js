@@ -1,7 +1,12 @@
 const path = require("path")
 const os = require("os")
 /* host地址 */
+<<<<<<< HEAD
 const HOST = "https://zyxin.top";
+=======
+// const HOST = "https://zyxin.top";
+const HOST = "http://localhost";
+>>>>>>> 88b2fbb... jjjj
 exports.HOST = HOST;
 /* 端口 */
 const PORT = 9527;
@@ -17,7 +22,11 @@ exports.STATIC_PATH_RELATIVE = STATIC_PATH_RELATIVE;
 const UPLOAD_AVATARS_BASE_DIR = `uploadAvatars`;
 exports.UPLOAD_AVATARS_BASE_DIR = UPLOAD_AVATARS_BASE_DIR;
 /* 请求返回的图片路径 */
+<<<<<<< HEAD
 const UPLOAD_AVATARS_RESPONSE_URL = `${URL}/uploadAvatars`
+=======
+const UPLOAD_AVATARS_RESPONSE_URL = `${URL}/api/avatar`
+>>>>>>> 88b2fbb... jjjj
 exports.UPLOAD_AVATARS_RESPONSE_URL = UPLOAD_AVATARS_RESPONSE_URL;
 
 /* 响应给客户端的上传图片的路径 */

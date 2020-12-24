@@ -16,6 +16,7 @@ intervalClearTempImg({
     limitTime: 15 * 60,
     intervalTime: 60 * 60
 });
+<<<<<<< HEAD
 
 const app = express();
 const httpsServer = https.createServer(httpsOption, app);
@@ -23,6 +24,30 @@ require("./routes")(app);
 const IO = SOCKET_IO(httpsServer);
 require("./socketIo")(IO);
 httpsServer.listen(PORT);
+=======
+;
+((isHttps) => {
+    if (isHttps) {
+        /* 开启https */
+        const app = express();
+        const server = https.createServer(httpsOption, app);
+        require("./routes")(app);
+        const IO = SOCKET_IO(server);
+        require("./socketIo")(IO);
+        server.listen(PORT);
+    } else {
+        /* 开启http */
+        const app = express();
+        const server = http.createServer(app);
+        require("./routes")(app);
+        const IO = SOCKET_IO(server);
+        require("./socketIo")(IO);
+        server.listen(PORT);
+    }
+})(false);
+
+
+>>>>>>> 88b2fbb... jjjj
 // httpsServer.listen(PORT, () => {
 //     console.log("开始监听")
 // });
