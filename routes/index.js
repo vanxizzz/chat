@@ -10,7 +10,6 @@ module.exports = (app) => {
 
     // })
 
-   
     app.use(corsMiddleware({
         exposedHeaders: ["authorization"],
         origin(origin, next) {
@@ -19,7 +18,7 @@ module.exports = (app) => {
         maxAge: 9999999999//这里是为了前端的axios拦截器会多发送一次options请求
     }))
     app.use(require("./middlewares/tokenMiddleware"));
-
+    
     app.use(express.static(path.resolve(__dirname, "../", STATIC_PATH_RELATIVE)));
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json());

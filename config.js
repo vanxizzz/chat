@@ -3,6 +3,7 @@ const os = require("os")
 /* host地址 */
 // const HOST = "https://zyxin.top";
 const HOST = "http://localhost";
+// const HOST = "https://zyxin.top";
 exports.HOST = HOST;
 /* 端口 */
 const PORT = 9527;
