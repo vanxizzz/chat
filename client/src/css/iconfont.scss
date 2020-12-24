@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 2277586 */
+  src: url('//at.alicdn.com/t/font_2277586_ogqquwsdn48.eot');
+  src: url('//at.alicdn.com/t/font_2277586_ogqquwsdn48.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2277586_ogqquwsdn48.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_2277586_ogqquwsdn48.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2277586_ogqquwsdn48.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2277586_ogqquwsdn48.svg#iconfont') format('svg');
+}
+  .iconfont {
+    font-family: "iconfont";
+  }
+  .iconfont.editIcon::after {
+    content: "\e62b";
+  }
+  .iconfont.groupIcon::after {
+    content: "\e615";
+  }
+  .iconfont.friendIcon::after {
+    content: "\e61d";
+  }
+  .iconfont.bottomArrowIcon::after {
+    content: "\e6c4";
+  }
+  .iconfont.accountIcon::after {
+    content: "\e609";
+  }
+  .iconfont.passwordIcon::after {
+    content: "\e605";
+  }
+  .iconfont.nameIcon::after {
+    content: "\e62e";
+  }
+  .iconfont.rightArrowIcon::after {
+    content: "\e675";
+  }
+  .iconfont.leftArrowIcon::after {
+    content: "\e676";
+  }
+  .iconfont.searchIcon::after {
+    content: "\e600";
+  }
+  .iconfont.configIcon::after {
+    content: "\e611";
+  }
+  .iconfont.wechatIcon::after {
+    content: "\e6c3";
+  }
