@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    测试
+    <p>
+        <input type="text" id="account">
+        <input type="text" id="password">
+    </p>
+    <div class="friends"></div>
+    <div class="infos"></div>
+    <button id="loginBtn">登录</button>
+    <button id="registerBtn">注册</button>
+    <button id="btn">发送聊天</button>
+    <button id="whoami">我是谁</button>
+    <button id="tt">与好友通信</button>
+    <button id="groupInfo">群发消息</button>
+    <button id="getFriends">获取朋友</button>
+    <p>
+        群id：<input type="text" id="groupInp">
+    </p>
+    <button id="joinGroup">加入群</button>
+    <script src="https://cdn.bootcdn.net/ajax/libs/socket.io/2.3.1/socket.io.js"></script>
+    <script>
+        function $(selector) {
+            return document.querySelector(selector)
+        }
+        let socket;
+        let userData;
+        whoami.addEventListener("click", e => {
+            socket.emit("whoami", localStorage.token);
+        })
+        getFriends.addEventListener("click", e => {
+            socket.emit("getFriends");
+        })
+        groupInfo.addEventListener("click", e => {
+            socket.emit("sendGroupChatting", { targetId: $("#groupInp").value, info: "大家注意啦！！" })
+        })
+        joinGroup.addEventListener("click", e => {
+            const val = $("#groupInp").value;
+            socket.emit("joinGroupRoom", val);
+        })
+        tt.addEventListener("click", e => {
+            socket.emit("joinUserRoom", Math.random())
+        })
+        btn.addEventListener("click", e => {
+            socket.emit("sendChatting", { targetId: 78, info: "你好" })
+        })
+        loginBtn.addEventListener("click", e => {
+            const account = document.getElementById("account").value;
+            const password = document.getElementById("password").value;
+
+            fetch("http://localhost:9527/api/user/login", {
+                method: "POST",
+                body: JSON.stringify({ account, password }),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            }).then(resp => {
+                localStorage.token = resp.headers.get("authorization");
+                return resp.json();
+            }).then(res => {
+                if (!res.status) {
+                    return;
+                }
+                userData = res.data;
+                console.log(localStorage.token)
+                socket = io("http://localhost:9527", {
+                    transportOptions: {
+                        polling: {
+                            extraHeaders: {
+                                'authorization': localStorage.token
+                            }
+                        }
+                    }
+                });
+                socket.on("whoami", (data) => {
+                    console.log("我是")
+                    console.log(data)
+                })
+                socket.on("getFriends", (data) => {
+                    console.log("朋友数据")
+                    console.log(data)
+                    renderFriends(data.data);
+                })
+                socket.on("connection", (data) => {
+                    // socket.emit("authorize",localStorage.token);
+                    console.log("连接开启");
+                    socket.emit("getFriends")
+                })
+                socket.on("test", (data) => {
+                    console.log(data)
+                });
+                socket.on("sendUserChatting", (data) => {
+                    console.log("发送给好友消息了，", data)
+                })
+                socket.on("joinUserRoom", (data) => {
+                    console.log("加入房间成功")
+                    console.log(data)
+                })
+                socket.on("sendGroupChatting", (data) => {
+                    console.log("发送群消息了", data);
+                })
+                socket.on("getGroupChatting", (data) => {
+                    console.log("某个群发来的消息")
+                    console.log(data)
+                })
+                socket.on("joinGroupRoom", (data) => {
+                    console.log("可以开始群聊了")
+                    console.log(data)
+                })
+                socket.on("disconnect", () => {
+                    console.log("服务端那边断开了")
+                })
+                socket.on("getUserChatting", (data) => {
+                    console.log("某个好友发来的消息")
+                    console.log(data)
+                    let str = `
+                        <div>
+                            id为${data.data.send_id}给id为${data.data.to_user_id}发了条消息：${data.data.info}    
+                        </div>
+                    `;
+                    $(".infos").innerHTML += str;
+                })
+            })
+        })
+        registerBtn.addEventListener("click", e => {
+            const account = document.getElementById("account").value;
+            const password = document.getElementById("password").value;
+            fetch("http://localhost:9527/api/user/register", {
+                method: "POST",
+                body: JSON.stringify({ account, password }),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            }).then(res => {
+                // res.headers.authorization
+                localStorage.token = res.headers.get("authorization")
+            })
+        })
+        function renderFriends(data) {
+            let wrapper = $(".friends");
+            let str = "";
+            data.forEach(item => {
+                let inpId = `inp${item.id}`;
+                str += `
+                <div>
+                    <span>id：${item.id}</span>
+                    <span>姓名：${item.name}</span>
+                    <input id="${inpId}" type="text" />
+                    <button onclick="send(${item.id},'${inpId}')">发送消息</button>    
+                    <button onclick="startChat(${item.id})">开始通信</button>
+                </div>
+                `;
+            });
+            wrapper.innerHTML = str;
+        }
+        function startChat(targetId) {
+            socket.emit("joinUserRoom", targetId)
+        }
+        function send(itemId, inpId) {
+            let val = $(`#${inpId}`).value;
+            socket.emit("sendUserChatting", { targetId: itemId, info: val });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "@types/express": "^4.17.9",
+    "@types/node": "^14.14.9",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "getmac": "^5.17.0",
+    "http-proxy-middleware": "^1.0.6",
+    "jimp": "^0.16.1",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
+    "md5": "^2.3.0",
+    "mockjs": "^1.1.0",
+    "multer": "^1.4.2",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.6",
+    "path-to-regexp": "^6.2.0",
+    "qrcode": "^1.4.4",
+    "sequelize": "^6.3.5",
+    "socket.io": "2.3.0",
+    "svg-captcha": "^1.4.0",
+    "uuid": "^8.3.1",
+    "validate.js": "^0.13.1"
+  },
+  "scripts": {
+    "start": "nodemon ./index.js"
+  }
+}
