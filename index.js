@@ -16,18 +16,6 @@ intervalClearTempImg({
     limitTime: 15 * 60,
     intervalTime: 60 * 60
 });
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-const app = express();
-const httpsServer = https.createServer(httpsOption, app);
-require("./routes")(app);
-const IO = SOCKET_IO(httpsServer);
-require("./socketIo")(IO);
-httpsServer.listen(PORT);
-=======
->>>>>>> temp
 ;
 ((isHttps) => {
     if (isHttps) {
@@ -50,10 +38,6 @@ httpsServer.listen(PORT);
 })(false);
 
 
-<<<<<<< HEAD
-=======
->>>>>>> 88b2fbb... jjjj
->>>>>>> temp
 // httpsServer.listen(PORT, () => {
 //     console.log("开始监听")
 // });
